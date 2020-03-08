@@ -1,24 +1,26 @@
 package api
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
-type ApiServer struct {
+type Server struct {
 }
 
-func NewApiServer() *ApiServer {
-	return &ApiServer{}
+func NewServer() *Server {
+	return &Server{}
 }
 
-func (s *ApiServer) Start() {
+func (s *Server) Start() error {
 	r := gin.Default()
-	r.Get("/schedules", func(c *gin.Context) {
-		c.JSON(200, gin.H{
+	r.GET("/schedules", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
 		})
 	})
 
 	// listen and serve on 0.0.0.0:8080
-	r.Run()
+	return r.Run()
 }
