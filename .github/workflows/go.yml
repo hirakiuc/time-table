@@ -37,9 +37,16 @@ jobs:
         make check
 
     - name: test
-      run: |
-        go test -race -coverprofile=coverage.txt -covermode=atomic
-        bash <(curl -s https://codecov.io/bash)
+      run: go test -race -coverprofile=coverage.txt -covermode=atomic
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.txt
+        flags: unittests
+        name: codecov
+        fail_ci_if_error: true
 
     - name: Build
       run: make build
