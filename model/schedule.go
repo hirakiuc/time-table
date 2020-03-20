@@ -27,6 +27,10 @@ func (s Schedule) HashValue() string {
 }
 
 func (s Schedule) TimesInPeriod(from time.Time, until time.Time) ([]time.Time, error) {
+	if from.After(until) {
+		return []time.Time{}, nil
+	}
+
 	sched, err := cron.ParseStandard(s.Cron)
 	if err != nil {
 		return []time.Time{}, err
@@ -43,6 +47,8 @@ func (s Schedule) TimesInPeriod(from time.Time, until time.Time) ([]time.Time, e
 		}
 
 		times = append(times, n)
+
+		start = n
 	}
 
 	return times, nil
