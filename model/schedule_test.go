@@ -7,10 +7,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const layout = "2006-01-02T15:04:05-07:00"
-
 func newSchedule(id string, cron string, until string) (Schedule, error) {
-	v, err := time.Parse(layout, until)
+	v, err := time.Parse(time.RFC3339, until)
 	if err != nil {
 		return Schedule{
 			ID:    "",
@@ -81,10 +79,10 @@ func TestScheduleTimesInPeriod(t *testing.T) {
 
 	var err error
 
-	from, err = time.Parse(layout, "2020-03-01T00:00:00+09:00")
+	from, err = time.Parse(time.RFC3339, "2020-03-01T00:00:00+09:00")
 	assert.Nil(err)
 
-	until, err = time.Parse(layout, "2020-03-10T23:59:59+09:00")
+	until, err = time.Parse(time.RFC3339, "2020-03-10T23:59:59+09:00")
 	assert.Nil(err)
 
 	for _, testcase := range testcases {
@@ -103,7 +101,7 @@ func TestScheduleTimesInPeriod(t *testing.T) {
 
 		strs := []string{}
 		for _, v := range times {
-			strs = append(strs, v.Format(layout))
+			strs = append(strs, v.Format(time.RFC3339))
 		}
 
 		assert.ElementsMatch(testcase.Expected, strs)

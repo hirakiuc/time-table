@@ -1,6 +1,7 @@
 package model
 
 import (
+	"strings"
 	"time"
 )
 
@@ -10,14 +11,10 @@ type TimeTable struct {
 }
 
 func NewTimeTable(order string) *TimeTable {
-	sortOrder := ""
+	sortOrder := OrderInAsc
 
-	switch order {
-	case OrderInAsc:
-	case OrderInDesc:
-		sortOrder = order
-	default:
-		sortOrder = OrderInAsc
+	if strings.EqualFold(order, OrderInDesc) {
+		sortOrder = OrderInDesc
 	}
 
 	return &TimeTable{
