@@ -5,12 +5,14 @@ import (
 	"os"
 
 	"github.com/hirakiuc/go-time-table/api"
+	"github.com/hirakiuc/go-time-table/keeper"
 )
 
 const ExitErrCode = 1
 
 func main() {
-	server := api.NewServer()
+	keeper := keeper.NewScheduleKeeper()
+	server := api.NewServer(keeper)
 
 	err := server.Start()
 	if err != nil {

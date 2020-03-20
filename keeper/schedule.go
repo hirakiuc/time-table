@@ -10,9 +10,9 @@ import (
 )
 
 type Schedule struct {
-	ID    string
-	Cron  string
-	Until time.Time
+	ID    string    `json:"id"`
+	Cron  string    `json:"cron"`
+	Until time.Time `json:"until"`
 }
 
 func (s Schedule) HashValue() string {

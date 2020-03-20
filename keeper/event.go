@@ -8,8 +8,8 @@ const (
 )
 
 type Event struct {
-	Schedule Schedule
-	At       time.Time
+	Schedule Schedule  `json:"schedule"`
+	At       time.Time `json:"at"`
 }
 
 type TimeTable struct {
@@ -72,6 +72,8 @@ func (t *TimeTable) Iterator() <-chan Event {
 		for _, event := range t.Events {
 			ch <- event
 		}
+
+		close(ch)
 	}()
 
 	return ch

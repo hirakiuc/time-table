@@ -6,7 +6,7 @@ import (
 )
 
 type Keeper interface {
-	AddSchedules(entries *[]Schedule) error
+	AddSchedules(schedules []Schedule) error
 	EventsInPeriod(from time.Time, until time.Time, order string) (*TimeTable, error)
 }
 
@@ -14,8 +14,8 @@ type ScheduleKeeper struct {
 	ScheduleMap map[string]Schedule
 }
 
-func NewScheduleKeeper() ScheduleKeeper {
-	return ScheduleKeeper{
+func NewScheduleKeeper() *ScheduleKeeper {
+	return &ScheduleKeeper{
 		ScheduleMap: map[string]Schedule{},
 	}
 }

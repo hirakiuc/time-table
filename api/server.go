@@ -1,25 +1,24 @@
 package api
 
 import (
-	"net/http"
+	"github.com/hirakiuc/go-time-table/keeper"
 
 	"github.com/gin-gonic/gin"
 )
 
 type Server struct {
+	Keeper keeper.Keeper
 }
 
-func NewServer() *Server {
-	return &Server{}
+func NewServer(keeper keeper.Keeper) *Server {
+	return &Server{
+		Keeper: keeper,
+	}
 }
 
 func (s *Server) Start() error {
 	r := gin.Default()
-	r.GET("/schedules", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
+	r.GET("/schedules", s.GetSchedules)
 
 	// listen and serve on 0.0.0.0:8080
 	return r.Run()
