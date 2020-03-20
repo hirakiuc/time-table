@@ -50,6 +50,7 @@ func TestAddSchedule(t *testing.T) {
 		Until: now.Add(24 * 10 * time.Hour),
 	}
 
+	// nolint:gomnd
 	times := []time.Time{
 		now.Add(1 * time.Hour),
 		now.Add(5 * time.Hour),

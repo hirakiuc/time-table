@@ -38,6 +38,7 @@ func TestScheduleHashValue(t *testing.T) {
 	assert.IsType(actual, "string", "Scheddule.HashValue should return a string")
 }
 
+// nolint:funlen
 func TestScheduleTimesInPeriod(t *testing.T) {
 	assert := assert.New(t)
 
