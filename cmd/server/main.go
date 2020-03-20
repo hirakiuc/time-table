@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/hirakiuc/go-time-table/api"
-	"github.com/hirakiuc/go-time-table/keeper"
+	"github.com/hirakiuc/time-table/api"
+	"github.com/hirakiuc/time-table/keeper"
 )
 
 const ExitErrCode = 1

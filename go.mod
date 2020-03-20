@@ -1,4 +1,4 @@
-module github.com/hirakiuc/go-time-table
+module github.com/hirakiuc/time-table
 
 go 1.13
 

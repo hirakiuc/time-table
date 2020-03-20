@@ -4,7 +4,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/hirakiuc/go-time-table/model"
+	"github.com/hirakiuc/time-table/model"
 )
 
 type Keeper interface {

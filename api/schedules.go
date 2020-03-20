@@ -7,7 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/hirakiuc/go-time-table/model"
+	"github.com/hirakiuc/time-table/model"
 )
 
 const (

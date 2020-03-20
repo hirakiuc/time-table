@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/hirakiuc/go-time-table/keeper"
+	"github.com/hirakiuc/time-table/keeper"
 
 	"github.com/gin-gonic/gin"
 )
