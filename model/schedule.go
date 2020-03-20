@@ -1,4 +1,4 @@
-package keeper
+package model
 
 import (
 	"crypto/sha512"

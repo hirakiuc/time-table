@@ -5,13 +5,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hirakiuc/go-time-table/keeper"
-
 	"github.com/gin-gonic/gin"
+
+	"github.com/hirakiuc/go-time-table/model"
 )
 
-const OneDay = 24 * time.Hour
-const TimeLayout = time.RFC3339
+const (
+	OneDay     = 24 * time.Hour
+	TimeLayout = time.RFC3339
+)
 
 type GetSchedulesParams struct {
 	From  time.Time `json:"from"`
@@ -21,7 +23,7 @@ type GetSchedulesParams struct {
 
 type GetSchedulesResponse struct {
 	Params GetSchedulesParams `json:"params"`
-	Events []keeper.Event     `json:"events"`
+	Events []model.Event      `json:"events"`
 }
 
 func (s *Server) parseGetSchedulesParams(ctx *gin.Context) *GetSchedulesParams {
@@ -49,10 +51,10 @@ func (s *Server) parseGetSchedulesParams(ctx *gin.Context) *GetSchedulesParams {
 	params.Until = until
 
 	// Parse sort param
-	if strings.EqualFold(ctx.Query("sort"), keeper.OrderInDesc) {
-		params.Sort = keeper.OrderInDesc
+	if strings.EqualFold(ctx.Query("sort"), model.OrderInDesc) {
+		params.Sort = model.OrderInDesc
 	} else {
-		params.Sort = keeper.OrderInAsc
+		params.Sort = model.OrderInAsc
 	}
 
 	return &params
@@ -67,7 +69,7 @@ func (s *Server) GetSchedules(ctx *gin.Context) {
 		return
 	}
 
-	events := []keeper.Event{}
+	events := []model.Event{}
 	for event := range timeTable.Iterator() {
 		events = append(events, event)
 	}

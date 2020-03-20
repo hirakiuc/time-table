@@ -1,16 +1,8 @@
-package keeper
+package model
 
-import "time"
-
-const (
-	OrderInAsc  = "asc"
-	OrderInDesc = "desc"
+import (
+	"time"
 )
-
-type Event struct {
-	Schedule Schedule  `json:"schedule"`
-	At       time.Time `json:"at"`
-}
 
 type TimeTable struct {
 	Events    []Event
