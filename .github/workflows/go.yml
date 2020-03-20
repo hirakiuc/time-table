@@ -37,7 +37,9 @@ jobs:
         make check
 
     - name: test
-      run: make test
+      run: |
+        go test -race -coverprofile=coverage.txt -covermode=atomic
+        bash <(curl -s https://codecov.io/bash)
 
     - name: Build
       run: make build
