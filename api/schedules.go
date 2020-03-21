@@ -74,7 +74,12 @@ func (s *Server) GetSchedules(ctx *gin.Context) {
 		events = append(events, event)
 	}
 
-	ctx.JSON(http.StatusOK, events)
+	res := GetSchedulesResponse{
+		Params: *params,
+		Events: events,
+	}
+
+	ctx.JSON(http.StatusOK, res)
 }
 
 func ResponseError(ctx *gin.Context, statusCode int, err error) {
